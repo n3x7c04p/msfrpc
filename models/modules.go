@@ -45,23 +45,23 @@ type ModuleInfoReq struct {
 }
 
 type ModuleInfoRes struct {
-	Type			string 		`msgpack:"type"`
-	Name 			string 		`msgpack:"name"`
-	FullName 		string 		`msgpack:"fullname"`
-	Rank 			string 		`msgpack:"rank"`
-	DisClosureDate	string 		`msgpack:"disclosuredate"`
-	Description 	string 		`msgpack:"description"`
-	License 		string 		`msgpack:"license"`
-	Filepath 		string 		`msgpack:"filepath"`
-	Arch			[]string	`msgpack:"arch"`
-	Platforms		[]string 	`msgpack:"platform"`
-	Authors 		[]string 	`msgpack:"authors"`
-	Privileged		bool 		`msgpack:"privileged"`
-	References 		[][]interface{} `msgpack:"references"`
-	Targets 		map[int]string `msgpack:"targets"`
-	DefaultTarget	uint64	`msgpack:"default_target"`
-	Stance			string 	`msgpack:"stance"`
-	Options 		map[string]interface{}	`msgpack:"options"`
+	Type				string 					`msgpack:"type"`
+	Name 				string 					`msgpack:"name"`
+	FullName 			string 					`msgpack:"fullname"`
+	Rank 				string 					`msgpack:"rank"`
+	DisClosureDate		string 					`msgpack:"disclosuredate"`
+	Description 		string 					`msgpack:"description"`
+	License 			string 					`msgpack:"license"`
+	Filepath 			string 					`msgpack:"filepath"`
+	Arch				[]string				`msgpack:"arch"`
+	Platforms			[]string 				`msgpack:"platform"`
+	Authors 			[]string 				`msgpack:"authors"`
+	Privileged			bool 					`msgpack:"privileged"`
+	References 			[][]interface{} 		`msgpack:"references"`
+	Targets 			map[int]string 			`msgpack:"targets"`
+	DefaultTarget		int						`msgpack:"default_target"`
+	Stance				string 					`msgpack:"stance"`
+	Options 			map[string]interface{}	`msgpack:"options"`
 }
 
 type ModuleOptionsReq struct {
@@ -98,7 +98,7 @@ type ModuleTargetCompatiblePayloadsReq struct {
 	Method   string
 	Token    string
 	ModName  string
-	Target   uint64
+	Target   int
 }
 
 type ModuleTargetCompatiblePayloadsRes struct {
@@ -115,23 +115,7 @@ type ModuleExecuteReq struct {
 }
 
 type ModuleExecuteRes struct {
-	JobID	uint64	`msgpack:"job_id,omitempty"`
+	JobID	int		`msgpack:"job_id,omitempty"`
 	UUID    string  `msgpack:"uuid"`
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

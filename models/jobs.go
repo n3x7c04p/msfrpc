@@ -7,7 +7,7 @@ type JobListReq struct {
 }
 
 type JobListRes struct {
-	ID          uint64 `msgpack:",omitempty"`
+	ID          int `msgpack:",omitempty"`
 	Module 		string `msgpack:",omitempty"`
 }
 
@@ -19,9 +19,9 @@ type JobInfoReq struct {
 }
 
 type JobInfoRes struct {
-	JobID		uint64 `msgpack:"jid"`
+	JobID		int `msgpack:"jid"`
 	Name		string `msgpack:"name"`
-	StartTime	uint64 `msgpack:"start_time"`
+	StartTime	int `msgpack:"start_time"`
 	UriPath		string `msgpack:"uripath"`
 	DataStore	map[string]interface{} `msgpack:"datastore"`
 }

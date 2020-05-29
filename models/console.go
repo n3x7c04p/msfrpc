@@ -7,7 +7,7 @@ type ConsoleCreateReq struct {
 }
 
 type ConsoleCreateRes struct {
-	ID 			uint64	`msgpack:"id"`
+	ID 			int	`msgpack:"id"`
 	Prompt 		string	`msgpack:"prompt"`
 	Busy 		bool	`msgpack:"busy"`
 }
@@ -40,7 +40,7 @@ type ConsoleWriteReq struct {
 }
 
 type ConsoleWriteRes struct {
-	Wrote 		uint64	`msgpack:"wrote"`
+	Wrote 		int	`msgpack:"wrote"`
 }
 
 type ConsoleReadReq struct {

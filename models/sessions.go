@@ -7,7 +7,7 @@ type SessionListReq struct {
 }
 
 type SessionListRes struct {
-	ID          uint64 `msgpack:",omitempty"`
+	ID          int `msgpack:",omitempty"`
 	Type        string `msgpack:"type"`
 	TunnelLocal string `msgpack:"tunnel_local"`
 	TunnelPeer  string `msgpack:"tunnel_peer"`
@@ -42,7 +42,7 @@ type SessionShellReadReq struct {
 }
 
 type SessionShellReadRes struct {
-	Seq 		uint64 	`msgpack:"seq"`
+	Seq 		int 	`msgpack:"seq"`
 	Data 		string 	`msgpack:"data"`
 }
 
@@ -55,7 +55,7 @@ type SessionShellWriteReq struct {
 }
 
 type SessionShellWriteRes struct {
-	WriteCount 	uint64 	`msgpack:"write_count"`
+	WriteCount 	int 	`msgpack:"write_count"`
 }
 
 type SessionShellUpgradeReq struct {
@@ -64,7 +64,7 @@ type SessionShellUpgradeReq struct {
 	Token     string
 	SessionID string
 	ConnHost  string
-	ConnPort  uint64
+	ConnPort  int
 }
 
 type SessionShellUpgradeRes struct {
@@ -147,7 +147,7 @@ type SessionRingLastReq struct {
 }
 
 type SessionRingLastRes struct {
-	Seq 		uint64 	`msgpack:"seq"`
+	Seq 		int 	`msgpack:"seq"`
 }
 
 
@@ -160,7 +160,7 @@ type SessionRingPutReq struct {
 }
 
 type SessionRingPutRes struct {
-	WriteCount 	uint64 	`msgpack:"write_count"`
+	WriteCount 	int 	`msgpack:"write_count"`
 }
 
 
