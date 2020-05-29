@@ -205,7 +205,7 @@ func (msf *Msfrpc) ModuleOptions(ModuleType string,ModuleName string) (map[strin
 	return res, nil
 }
 
-func (msf *Msfrpc) ModuleCompatiablePayloads(ModuleName string) ([]string, error) {
+func (msf *Msfrpc) ModuleCompatiblePayloads(ModuleName string) ([]string, error) {
 	req := &models.ModuleCompatiblePayloadsReq{Method: ModuleCompatiblePayloads, Token: msf.token, ModName: ModuleName}
 	var res models.ModuleCompatiblePayloadsRes
 	if err := msf.send(req, &res); err != nil {
@@ -214,7 +214,7 @@ func (msf *Msfrpc) ModuleCompatiablePayloads(ModuleName string) ([]string, error
 	return res.Payloads, nil
 }
 
-func (msf *Msfrpc) ModuleTargetCompatiablePayloads(ModuleName string, Target uint64) ([]string, error) {
+func (msf *Msfrpc) ModuleTargetCompatiblePayloads(ModuleName string, Target uint64) ([]string, error) {
 	req := &models.ModuleTargetCompatiblePayloadsReq{Method: ModuleTargetCompatiblePayloads, Token: msf.token, ModName: ModuleName, Target: Target}
 	var res models.ModuleTargetCompatiblePayloadsRes
 	if err := msf.send(req, &res); err != nil {
@@ -223,9 +223,9 @@ func (msf *Msfrpc) ModuleTargetCompatiablePayloads(ModuleName string, Target uin
 	return res.Payloads, nil
 }
 
-/*func (msf *Msfrpc) ModuleCompatiableSessions(ModuleName string) ([]uint64, error) {
+/*func (msf *Msfrpc) ModuleCompatibleSessions(ModuleName string) ([]uint64, error) {
 	req := &models.ModuleCompatibleSessionsReq{Method: ModuleTargetCompatiblePayloads, Token: msf.token, ModName: ModuleName}
-	res := make(map[string]models.ModuleCompatiableSessionRes)
+	res := make(map[string]models.ModuleCompatibleSessionRes)
 	if err := msf.send(req, &res); err != nil {
 		return nil, err
 	}

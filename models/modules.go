@@ -58,7 +58,7 @@ type ModuleInfoRes struct {
 	Authors 		[]string 	`msgpack:"authors"`
 	Privileged		bool 		`msgpack:"privileged"`
 	References 		[][]interface{} `msgpack:"references"`
-	Targets 		map[uint64]string `msgpack:"targets"`
+	Targets 		map[int]string `msgpack:"targets"`
 	DefaultTarget	uint64	`msgpack:"default_target"`
 	Stance			string 	`msgpack:"stance"`
 	Options 		map[string]interface{}	`msgpack:"options"`
