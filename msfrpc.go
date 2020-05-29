@@ -10,14 +10,14 @@ import (
 
 type Msfrpc struct {
 	host  string
-	port  uint64
+	port  int
 	user  string
 	pass  string
 	ssl   bool 
 	token string
 }
 
-func New(host string, port uint64, user string, pass string, ssl bool) (*Msfrpc, error) {
+func New(host string, port int, user string, pass string, ssl bool) (*Msfrpc, error) {
 	msf := &Msfrpc{
 		host: host,
 		port: port,
@@ -101,9 +101,9 @@ func (msf *Msfrpc) ConsoleDestroy(ConsoleID string) (bool, error) {
 	return res.Result != "success", nil
 }
 
-func (msf *Msfrpc) ConsoleList() (map[uint64]models.ConsoleCreateRes, error) {
+func (msf *Msfrpc) ConsoleList() (map[int]models.ConsoleCreateRes, error) {
 	req := &models.ConsoleListReq{Method: ConsoleList, Token: msf.token}
-	res := make(map[uint64]models.ConsoleCreateRes)
+	res := make(map[int]models.ConsoleCreateRes)
 	if err := msf.send(req, &res); err != nil {
 		return nil, err
 	}
@@ -114,7 +114,7 @@ func (msf *Msfrpc) ConsoleList() (map[uint64]models.ConsoleCreateRes, error) {
 	return res, nil
 }
 
-func (msf *Msfrpc) ConsoleWrite(ConsoleID string, Data string) (uint64, error) {
+func (msf *Msfrpc) ConsoleWrite(ConsoleID string, Data string) (int, error) {
 	req := &models.ConsoleWriteReq{Method: ConsoleWrite, Token: msf.token, ConsoleID: ConsoleID, Data: Data}
 	var res models.ConsoleWriteRes
 	if err := msf.send(req, &res); err != nil {
@@ -214,7 +214,7 @@ func (msf *Msfrpc) ModuleCompatiblePayloads(ModuleName string) ([]string, error)
 	return res.Payloads, nil
 }
 
-func (msf *Msfrpc) ModuleTargetCompatiblePayloads(ModuleName string, Target uint64) ([]string, error) {
+func (msf *Msfrpc) ModuleTargetCompatiblePayloads(ModuleName string, Target int) ([]string, error) {
 	req := &models.ModuleTargetCompatiblePayloadsReq{Method: ModuleTargetCompatiblePayloads, Token: msf.token, ModName: ModuleName, Target: Target}
 	var res models.ModuleTargetCompatiblePayloadsRes
 	if err := msf.send(req, &res); err != nil {
@@ -223,7 +223,7 @@ func (msf *Msfrpc) ModuleTargetCompatiblePayloads(ModuleName string, Target uint
 	return res.Payloads, nil
 }
 
-/*func (msf *Msfrpc) ModuleCompatibleSessions(ModuleName string) ([]uint64, error) {
+/*func (msf *Msfrpc) ModuleCompatibleSessions(ModuleName string) ([]int, error) {
 	req := &models.ModuleCompatibleSessionsReq{Method: ModuleTargetCompatiblePayloads, Token: msf.token, ModName: ModuleName}
 	res := make(map[string]models.ModuleCompatibleSessionRes)
 	if err := msf.send(req, &res); err != nil {
@@ -243,9 +243,9 @@ func (msf *Msfrpc) ModuleExecute(ModuleType string, ModuleName string) (models.M
 
 
 //jobs
-func (msf *Msfrpc) JobList() (map[uint64]models.JobListRes,error) {
+func (msf *Msfrpc) JobList() (map[int]models.JobListRes,error) {
 	req := &models.JobListReq{Method: JobList, Token: msf.token}
-	res := make(map[uint64]models.JobListRes)
+	res := make(map[int]models.JobListRes)
 	if err := msf.send(req, &res); err != nil {
 		return nil, err
 	}
@@ -274,9 +274,9 @@ func (msf *Msfrpc) JobStop(JobID string) (bool,error) {
 }
 
 //sessions
-func (msf *Msfrpc) SessionList() (map[uint64]models.SessionListRes, error) {
+func (msf *Msfrpc) SessionList() (map[int]models.SessionListRes, error) {
 	req := &models.SessionListReq{Method: SessionList, Token: msf.token}
-	res := make(map[uint64]models.SessionListRes)
+	res := make(map[int]models.SessionListRes)
 	if err := msf.send(req, &res); err != nil {
 		return nil, err
 	}
@@ -306,7 +306,7 @@ func (msf *Msfrpc) SessionShellRead(SessionID string) (models.SessionShellReadRe
 	return res, nil
 }
 
-func (msf *Msfrpc) SessionShellWrite(SessionID string, Data string) (uint64, error) {
+func (msf *Msfrpc) SessionShellWrite(SessionID string, Data string) (int, error) {
 	req := &models.SessionShellWriteReq{Method: SessionShellRead, Token: msf.token, SessionID: SessionID, Data: Data}
 	var res models.SessionShellWriteRes
 	if err := msf.send(req, &res); err != nil {
@@ -315,7 +315,7 @@ func (msf *Msfrpc) SessionShellWrite(SessionID string, Data string) (uint64, err
 	return res.WriteCount, nil
 }
 
-func (msf *Msfrpc) SessionShellUpgrade(SessionID string, ConnHost string, ConnPort uint64) (bool, error) {
+func (msf *Msfrpc) SessionShellUpgrade(SessionID string, ConnHost string, ConnPort int) (bool, error) {
 	req := &models.SessionShellUpgradeReq{Method: SessionShellUpgrade, Token: msf.token, SessionID: SessionID, ConnHost: ConnHost, ConnPort: ConnPort}
 	var res models.SessionShellUpgradeRes
 	if err := msf.send(req, &res); err != nil {
@@ -387,7 +387,7 @@ func (msf *Msfrpc) SessionRingClear(SessionID string) (bool, error) {
 	return res.Result != "success", nil
 }
 
-func (msf *Msfrpc) SessionRingPut(SessionID string, Data string) (uint64, error) {
+func (msf *Msfrpc) SessionRingPut(SessionID string, Data string) (int, error) {
 	req := &models.SessionRingPutReq{Method: SessionRingPut, Token: msf.token, SessionID: SessionID, Data: Data}
 	var res models.SessionRingPutRes
 	if err := msf.send(req, &res); err != nil {
