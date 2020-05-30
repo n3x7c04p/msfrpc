@@ -45,23 +45,23 @@ type ModuleInfoReq struct {
 }
 
 type ModuleInfoRes struct {
-	Type				string 					`msgpack:"type"`
-	Name 				string 					`msgpack:"name"`
-	FullName 			string 					`msgpack:"fullname"`
-	Rank 				string 					`msgpack:"rank"`
-	DisClosureDate		string 					`msgpack:"disclosuredate"`
-	Description 		string 					`msgpack:"description"`
-	License 			string 					`msgpack:"license"`
-	Filepath 			string 					`msgpack:"filepath"`
-	Arch				[]string				`msgpack:"arch"`
-	Platforms			[]string 				`msgpack:"platform"`
-	Authors 			[]string 				`msgpack:"authors"`
-	Privileged			bool 					`msgpack:"privileged"`
-	References 			[][]interface{} 		`msgpack:"references"`
-	Targets 			map[int]string 			`msgpack:"targets"`
-	DefaultTarget		int						`msgpack:"default_target"`
-	Stance				string 					`msgpack:"stance"`
-	Options 			map[string]interface{}	`msgpack:"options"`
+	Type           string                      `msgpack:"type"`
+	Name           string                      `msgpack:"name"`
+	FullName       string                      `msgpack:"fullname"`
+	Rank           string                      `msgpack:"rank"`
+	DisClosureDate string                      `msgpack:"disclosuredate"`
+	Description    string                      `msgpack:"description"`
+	License        string                      `msgpack:"license"`
+	Filepath       string                      `msgpack:"filepath"`
+	Arch           []string                    `msgpack:"arch"`
+	Platforms      []string                    `msgpack:"platform"`
+	Authors        []string                    `msgpack:"authors"`
+	Privileged     bool                        `msgpack:"privileged"`
+	References     [][]interface{}             `msgpack:"references"`
+	Targets        map[int]string              `msgpack:"targets"`
+	DefaultTarget  int                         `msgpack:"default_target"`
+	Stance         string                      `msgpack:"stance"`
+	Options        map[string]ModuleOptionsRes `msgpack:"options"`
 }
 
 type ModuleOptionsReq struct {
@@ -73,13 +73,13 @@ type ModuleOptionsReq struct {
 }
 
 type ModuleOptionsRes struct {
-	Type 		string		`msgpack:"type"`
-	Required    bool		`msgpack:"required"`
-	Advanced 	bool		`msgpack:"advanced"`
-	Evasion 	bool 		`msgpack:"evasion"`
-	Desc 		string 		`msgpack:"desc"`
-	Default 	interface{} `msgpack:"default,omitempty"`
-	Enums		[]string	`msgpack:"enums,omitempty"`
+	Type     string      `msgpack:"type"`
+	Required bool        `msgpack:"required"`
+	Advanced bool        `msgpack:"advanced"`
+	Evasion  bool        `msgpack:"evasion"`
+	Desc     string      `msgpack:"desc"`
+	Default  interface{} `msgpack:"default,omitempty"`
+	Enums    []string    `msgpack:"enums,omitempty"`
 }
 
 type ModuleCompatiblePayloadsReq struct {
@@ -115,7 +115,6 @@ type ModuleExecuteReq struct {
 }
 
 type ModuleExecuteRes struct {
-	JobID	int		`msgpack:"job_id,omitempty"`
-	UUID    string  `msgpack:"uuid"`
+	JobID int    `msgpack:"job_id,omitempty"`
+	UUID  string `msgpack:"uuid"`
 }
-

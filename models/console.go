@@ -7,9 +7,9 @@ type ConsoleCreateReq struct {
 }
 
 type ConsoleCreateRes struct {
-	ID 			int	`msgpack:"id"`
-	Prompt 		string	`msgpack:"prompt"`
-	Busy 		bool	`msgpack:"busy"`
+	ID     int    `msgpack:"id"`
+	Prompt string `msgpack:"prompt"`
+	Busy   bool   `msgpack:"busy"`
 }
 
 type ConsoleDestroyReq struct {
@@ -20,7 +20,7 @@ type ConsoleDestroyReq struct {
 }
 
 type ConsoleDestroyRes struct {
-	Result 		string	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type ConsoleListReq struct {
@@ -40,7 +40,7 @@ type ConsoleWriteReq struct {
 }
 
 type ConsoleWriteRes struct {
-	Wrote 		int	`msgpack:"wrote"`
+	Wrote int `msgpack:"wrote"`
 }
 
 type ConsoleReadReq struct {
@@ -51,9 +51,9 @@ type ConsoleReadReq struct {
 }
 
 type ConsoleReadRes struct {
-	Data 		string	`msgpack:"data"`
-	Prompt 		string	`msgpack:"prompt"`
-	Busy 		bool	`msgpack:"busy"`
+	Data   string `msgpack:"data"`
+	Prompt string `msgpack:"prompt"`
+	Busy   bool   `msgpack:"busy"`
 }
 
 type ConsoleSessionDetachReq struct {
@@ -64,7 +64,7 @@ type ConsoleSessionDetachReq struct {
 }
 
 type ConsoleSessionDetachRes struct {
-	Result 		string	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type ConsoleSessionKillReq struct {
@@ -75,7 +75,7 @@ type ConsoleSessionKillReq struct {
 }
 
 type ConsoleSessionKillRes struct {
-	Result 		string	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type ConsoleTabsReq struct {
@@ -87,9 +87,5 @@ type ConsoleTabsReq struct {
 }
 
 type ConsoleTabsRes struct {
-	Tabs 		[]string	`msgpack:"tabs"`
+	Tabs []string `msgpack:"tabs"`
 }
-
-
-
-

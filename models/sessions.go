@@ -7,7 +7,7 @@ type SessionListReq struct {
 }
 
 type SessionListRes struct {
-	ID          int `msgpack:",omitempty"`
+	ID          int    `msgpack:",omitempty"`
 	Type        string `msgpack:"type"`
 	TunnelLocal string `msgpack:"tunnel_local"`
 	TunnelPeer  string `msgpack:"tunnel_peer"`
@@ -31,7 +31,7 @@ type SessionStopReq struct {
 }
 
 type SessionStopRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionShellReadReq struct {
@@ -42,8 +42,8 @@ type SessionShellReadReq struct {
 }
 
 type SessionShellReadRes struct {
-	Seq 		int 	`msgpack:"seq"`
-	Data 		string 	`msgpack:"data"`
+	Seq  int    `msgpack:"seq"`
+	Data string `msgpack:"data"`
 }
 
 type SessionShellWriteReq struct {
@@ -55,7 +55,7 @@ type SessionShellWriteReq struct {
 }
 
 type SessionShellWriteRes struct {
-	WriteCount 	int 	`msgpack:"write_count"`
+	WriteCount int `msgpack:"write_count"`
 }
 
 type SessionShellUpgradeReq struct {
@@ -68,7 +68,7 @@ type SessionShellUpgradeReq struct {
 }
 
 type SessionShellUpgradeRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionMeterpreterReadReq struct {
@@ -79,7 +79,7 @@ type SessionMeterpreterReadReq struct {
 }
 
 type SessionMeterpreterReadRes struct {
-	Data 		string 	`msgpack:"data"`
+	Data string `msgpack:"data"`
 }
 
 type SessionMeterpreterWriteReq struct {
@@ -91,7 +91,7 @@ type SessionMeterpreterWriteReq struct {
 }
 
 type SessionMeterpreterWriteRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionMeterpreterScriptReq struct {
@@ -103,7 +103,7 @@ type SessionMeterpreterScriptReq struct {
 }
 
 type SessionMeterpreterScriptRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionMeterpreterSessionDetachReq struct {
@@ -114,7 +114,7 @@ type SessionMeterpreterSessionDetachReq struct {
 }
 
 type SessionMeterpreterSessionDetachRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionMeterpreterSessionKillReq struct {
@@ -125,7 +125,7 @@ type SessionMeterpreterSessionKillReq struct {
 }
 
 type SessionMeterpreterSessionKillRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionRingClearReq struct {
@@ -136,7 +136,7 @@ type SessionRingClearReq struct {
 }
 
 type SessionRingClearRes struct {
-	Result 		string 	`msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type SessionRingLastReq struct {
@@ -147,9 +147,8 @@ type SessionRingLastReq struct {
 }
 
 type SessionRingLastRes struct {
-	Seq 		int 	`msgpack:"seq"`
+	Seq int `msgpack:"seq"`
 }
-
 
 type SessionRingPutReq struct {
 	_msgpack  struct{} `msgpack:",asArray"`
@@ -160,10 +159,5 @@ type SessionRingPutReq struct {
 }
 
 type SessionRingPutRes struct {
-	WriteCount 	int 	`msgpack:"write_count"`
+	WriteCount int `msgpack:"write_count"`
 }
-
-
-
-
-

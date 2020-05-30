@@ -7,14 +7,13 @@ type CoreAddModulePathReq struct {
 	Path     string
 }
 
-
 type CoreModuleLengthRes struct {
-	LenExploits 	uint64	`msgpack:"exploits"`
-	LenAuxiliarys 	uint64	`msgpack:"auxiliary"`
-	LenPosts 		uint64	`msgpack:"posts"`
-	LenEncoders 	uint64	`msgpack:"encoders"`
-	LenNops 		uint64	`msgpack:"nops"`
-	LenPayloads 	uint64	`msgpack:"payloads"`
+	LenExploits   int `msgpack:"exploits"`
+	LenAuxiliarys int `msgpack:"auxiliary"`
+	LenPosts      int `msgpack:"posts"`
+	LenEncoders   int `msgpack:"encoders"`
+	LenNops       int `msgpack:"nops"`
+	LenPayloads   int `msgpack:"payloads"`
 }
 
 type CoreModuleStatsReq struct {
@@ -36,7 +35,7 @@ type CoreSaveReq struct {
 }
 
 type CoreSaveRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type CoreSetGReq struct {
@@ -48,7 +47,7 @@ type CoreSetGReq struct {
 }
 
 type CoreSetGRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type CoreUnsetGReq struct {
@@ -59,7 +58,7 @@ type CoreUnsetGReq struct {
 }
 
 type CoreUnsetGRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type CoreThreadListReq struct {
@@ -69,10 +68,10 @@ type CoreThreadListReq struct {
 }
 
 type CoreThreadListRes struct {
-	Status 		string 	`msgpack:"status"`
-	Critical 	bool 	`msgpack:"critical"`
-	Name 		string 	`msgpack:"name"`
-	Started 	string 	`msgpack:"started"`
+	Status   string `msgpack:"status"`
+	Critical bool   `msgpack:"critical"`
+	Name     string `msgpack:"name"`
+	Started  string `msgpack:"started"`
 }
 
 type CoreThreadKillReq struct {
@@ -82,7 +81,7 @@ type CoreThreadKillReq struct {
 }
 
 type CoreThreadKillRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type CoreVersionReq struct {
@@ -92,9 +91,9 @@ type CoreVersionReq struct {
 }
 
 type CoreVersionRes struct {
-	Version 		string `msgpack:"version"`
-	RubyVersion 	string `msgpack:"ruby"`
-	ApiVersion 		string `msgpack:"api"`
+	Version     string `msgpack:"version"`
+	RubyVersion string `msgpack:"ruby"`
+	ApiVersion  string `msgpack:"api"`
 }
 
 type CoreStopReq struct {
@@ -104,6 +103,5 @@ type CoreStopReq struct {
 }
 
 type CoreStopRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
-

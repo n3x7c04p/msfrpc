@@ -34,7 +34,7 @@ type AuthTokenAddReq struct {
 }
 
 type AuthTokenAddRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
 
 type AuthTokenGenerateReq struct {
@@ -45,8 +45,8 @@ type AuthTokenGenerateReq struct {
 }
 
 type AuthTokenGenerateRes struct {
-	Result 		string `msgpack:"result"`
-	Token 		string `msgpack:"token"`
+	Result string `msgpack:"result"`
+	Token  string `msgpack:"token"`
 }
 
 type AuthTokenListReq struct {
@@ -56,7 +56,7 @@ type AuthTokenListReq struct {
 }
 
 type AuthTokenListRes struct {
-	Tokens 		[]string `msgpack:"tokens"`
+	Tokens []string `msgpack:"tokens"`
 }
 
 type AuthTokenRemoveReq struct {
@@ -67,6 +67,5 @@ type AuthTokenRemoveReq struct {
 }
 
 type AuthTokenRemoveRes struct {
-	Result 		string `msgpack:"result"`
+	Result string `msgpack:"result"`
 }
-
