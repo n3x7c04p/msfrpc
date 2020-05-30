@@ -1,14 +1,16 @@
 package msfrpc
 
 import (
-	"bytes"
 	"fmt"
+	"bytes"
+	"net/http"
 	"github.com/vmihailenco/msgpack/v4"
 	"msfrpc/models"
-	"net/http"
+	"strings"
 )
 
 type Msfrpc struct {
+	buf	  *bytes.Buffer
 	host  string
 	port  int
 	user  string
@@ -19,13 +21,13 @@ type Msfrpc struct {
 
 func New(host string, port int, user string, pass string, ssl bool) (*Msfrpc, error) {
 	msf := &Msfrpc{
+		buf: new(bytes.Buffer),
 		host: host,
 		port: port,
 		user: user,
 		pass: pass,
 		ssl:  ssl,
 	}
-
 	if err := msf.Login(); err != nil {
 		return nil, err
 	}
@@ -34,18 +36,17 @@ func New(host string, port int, user string, pass string, ssl bool) (*Msfrpc, er
 }
 
 func (msf *Msfrpc) send(req interface{}, res interface{}) error {
-	buf := new(bytes.Buffer)
 	var scheme string
 	if msf.ssl {
 		scheme = "https"
 	} else {
 		scheme = "http"
 	}
-	if err := msgpack.NewEncoder(buf).Encode(req); err != nil {
+	if err := msgpack.NewEncoder(msf.buf).Encode(req); err != nil {
 		return err
 	}
 	dest := fmt.Sprintf("%s://%s:%d/api", scheme, msf.host, msf.port)
-	r, err := http.Post(dest, "binary/message-pack", buf)
+	r, err := http.Post(dest, "binary/message-pack", msf.buf)
 	if err != nil {
 		return err
 	}
@@ -205,6 +206,33 @@ func (msf *Msfrpc) ModuleOptions(ModuleType string, ModuleName string) (map[stri
 	res := make(map[string]models.ModuleOptionsRes)
 	if err := msf.send(req, &res); err != nil {
 		return nil, err
+	}
+	for key, options := range res {
+		var buf []string = nil
+		switch options.Type {
+		case "string":
+			if w, ok := options.Default.([]uint8); ok {
+				for _,c := range w {
+					buf = append(buf,fmt.Sprintf("%c",c))
+				}
+				options.Default = strings.Join(buf,"")
+			}
+		case "enum":
+			if w, ok := options.Default.([]uint8); ok {
+				for _,c := range w {
+					buf = append(buf,fmt.Sprintf("%c",c))
+				}
+				options.Default = strings.Join(buf,"")
+			}
+		case "address":
+			if w, ok := options.Default.([]uint8); ok {
+				for _,c := range w {
+					buf = append(buf,fmt.Sprintf("%c",c))
+				}
+				options.Default = strings.Join(buf,"")
+			}
+		}
+		res[key] = options
 	}
 	return res, nil
 }

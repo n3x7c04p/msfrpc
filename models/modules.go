@@ -78,8 +78,8 @@ type ModuleOptionsRes struct {
 	Advanced bool        `msgpack:"advanced"`
 	Evasion  bool        `msgpack:"evasion"`
 	Desc     string      `msgpack:"desc"`
-	Default  interface{} `msgpack:"default,omitempty"`
-	Enums    []string    `msgpack:"enums,omitempty"`
+	Default  interface{} `msgpack:"default,asArray,omitempty"`
+	Enums    []string    `msgpack:"enums,asArray,omitempty"`
 }
 
 type ModuleCompatiblePayloadsReq struct {
