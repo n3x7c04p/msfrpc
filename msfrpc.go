@@ -1,11 +1,11 @@
 package msfrpc
 
 import (
-	"fmt"
 	"bytes"
-	"net/http"
+	"fmt"
 	"github.com/vmihailenco/msgpack/v4"
 	"msfrpc/models"
+	"net/http"
 	"strings"
 )
 
@@ -50,12 +50,13 @@ func (msf *Msfrpc) send(req interface{}, res interface{}) error {
 	if err != nil {
 		return err
 	}
-	defer r.Body.Close()
 
 	if err := msgpack.NewDecoder(r.Body).Decode(&res); err != nil {
 		return err
 	}
-
+	if err = r.Body.Close(); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -208,29 +209,13 @@ func (msf *Msfrpc) ModuleOptions(ModuleType string, ModuleName string) (map[stri
 		return nil, err
 	}
 	for key, options := range res {
-		var buf []string = nil
-		switch options.Type {
-		case "string":
-			if w, ok := options.Default.([]uint8); ok {
-				for _,c := range w {
-					buf = append(buf,fmt.Sprintf("%c",c))
-				}
-				options.Default = strings.Join(buf,"")
+		if w, ok := options.Default.([]uint8); ok {
+			var buf []string = nil
+			for _,c := range w {
+				buf = append(buf,fmt.Sprintf("%c",c))
 			}
-		case "enum":
-			if w, ok := options.Default.([]uint8); ok {
-				for _,c := range w {
-					buf = append(buf,fmt.Sprintf("%c",c))
-				}
-				options.Default = strings.Join(buf,"")
-			}
-		case "address":
-			if w, ok := options.Default.([]uint8); ok {
-				for _,c := range w {
-					buf = append(buf,fmt.Sprintf("%c",c))
-				}
-				options.Default = strings.Join(buf,"")
-			}
+			str := strings.Join(buf,"")
+			options.Default = str
 		}
 		res[key] = options
 	}
