@@ -34,6 +34,17 @@ type SessionStopRes struct {
 	Result string `msgpack:"result"`
 }
 
+type SessionCompatibleModulesReq struct {
+	_msgpack  struct{} `msgpack:",asArray"`
+	Method    string
+	Token     string
+	SessionID string
+}
+
+type SessionCompatibleModulesRes struct {
+	Modules []string `msgpack:"modules"`
+}
+
 type SessionShellReadReq struct {
 	_msgpack  struct{} `msgpack:",asArray"`
 	Method    string
@@ -91,6 +102,30 @@ type SessionMeterpreterWriteReq struct {
 }
 
 type SessionMeterpreterWriteRes struct {
+	Result string `msgpack:"result"`
+}
+
+type SessionMeterpreterTabsReq struct {
+	_msgpack  struct{} `msgpack:",asArray"`
+	Method    string
+	Token     string
+	SessionID string
+	InputLine string
+}
+
+type SessionMeterpreterTabsRes struct {
+	Tabs []string `msgpack:"result"`
+}
+
+type SessionMeterpreterRunSingleReq struct {
+	_msgpack  struct{} `msgpack:",asArray"`
+	Method    string
+	Token     string
+	SessionID string
+	Data      string
+}
+
+type SessionMeterpreterRunSingleRes struct {
 	Result string `msgpack:"result"`
 }
 

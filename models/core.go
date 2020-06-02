@@ -78,6 +78,7 @@ type CoreThreadKillReq struct {
 	_msgpack struct{} `msgpack:",asArray"`
 	Method   string
 	Token    string
+	ThreadID string
 }
 
 type CoreThreadKillRes struct {
