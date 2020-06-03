@@ -34,7 +34,7 @@ func (msf *Msfrpc) ModuleList(ModuleType string) ([]string, error) {
 	return res["modules"], nil
 }
 
-func (msf *Msfrpc) ModuleInfo(ModuleType string, ModuleName string) (ModuleInfoRes, error) {
+func (msf *Msfrpc) ModuleInfo(ModuleType string, ModuleName string) (models.ModuleInfoRes, error) {
 	req := &models.ModuleInfoReq{Method: models.ModuleInfo, Token: msf.token, ModType: ModuleType, ModName: ModuleName}
 	var res models.ModuleInfoRes
 	if err := msf.send(req, &res); err != nil {
