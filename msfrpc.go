@@ -3,6 +3,7 @@ package msfrpc
 import (
 	"bytes"
 	"crypto/tls"
+	"errors"
 	"fmt"
 	"github.com/vmihailenco/msgpack/v4"
 	"msfrpc/models"
@@ -68,15 +69,26 @@ func (msf *Msfrpc) send(req interface{}, res interface{}) error {
 		return err
 	}
 
-	if err := msgpack.NewDecoder(r.Body).Decode(&res); err != nil {
-		return err
-	}
-
-	msf.buf.Reset()
-
 	defer r.Body.Close()
 
-	return nil
+	switch r.StatusCode {
+	case 200:
+		if err := msgpack.NewDecoder(r.Body).Decode(&res); err != nil {
+			return err
+		}
+		msf.buf.Reset()
+		return nil
+	case 500:
+		return errors.New(fmt.Sprintf("The request resulted in an error: \n%s", msf.buf.String()))
+	case 401:
+		return errors.New(fmt.Sprintf("The authentication credentials supplied were not valid"))
+	case 403:
+		return errors.New(fmt.Sprintf("The authentication credentials supplied were not granted access to the resource"))
+	case 404:
+		return errors.New(fmt.Sprintf("The request was sent to an invalid URI"))
+	default:
+		return errors.New(r.Status)
+	}
 }
 
 func (msf *Msfrpc) Login() error {
