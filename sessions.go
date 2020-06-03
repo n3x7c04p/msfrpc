@@ -1,6 +1,6 @@
 package msfrpc
 
-import "msfrpc/models"
+import "github.com/n3x7c04p/msfrpc/models"
 
 //sessions
 func (msf *Msfrpc) SessionList() (map[int]models.SessionListRes, error) {

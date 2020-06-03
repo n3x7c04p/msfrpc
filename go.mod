@@ -1,4 +1,4 @@
-module msfrpc
+module github.com/n3x7c04p/msfrpc
 
 go 1.14
 

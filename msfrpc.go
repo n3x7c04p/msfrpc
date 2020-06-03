@@ -5,8 +5,8 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"github.com/n3x7c04p/msfrpc/models"
 	"github.com/vmihailenco/msgpack/v4"
-	"msfrpc/models"
 	"net/http"
 )
 

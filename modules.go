@@ -2,7 +2,7 @@ package msfrpc
 
 import (
 	"fmt"
-	"msfrpc/models"
+	"github.com/n3x7c04p/msfrpc/models"
 	"strings"
 )
 
@@ -34,7 +34,7 @@ func (msf *Msfrpc) ModuleList(ModuleType string) ([]string, error) {
 	return res["modules"], nil
 }
 
-func (msf *Msfrpc) ModuleInfo(ModuleType string, ModuleName string) (models.ModuleInfoRes, error) {
+func (msf *Msfrpc) ModuleInfo(ModuleType string, ModuleName string) (ModuleInfoRes, error) {
 	req := &models.ModuleInfoReq{Method: models.ModuleInfo, Token: msf.token, ModType: ModuleType, ModName: ModuleName}
 	var res models.ModuleInfoRes
 	if err := msf.send(req, &res); err != nil {
