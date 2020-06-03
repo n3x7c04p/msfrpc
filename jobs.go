@@ -1,6 +1,6 @@
 package msfrpc
 
-import "msfrpc/models"
+import "github.com/n3x7c04p/msfrpc/models"
 
 //jobs
 func (msf *Msfrpc) JobList() (map[int]models.JobListRes, error) {
