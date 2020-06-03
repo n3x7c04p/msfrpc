@@ -2,6 +2,7 @@ package msfrpc
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"github.com/vmihailenco/msgpack/v4"
 	"msfrpc/models"
@@ -45,7 +46,24 @@ func (msf *Msfrpc) send(req interface{}, res interface{}) error {
 		return err
 	}
 	dest := fmt.Sprintf("%s://%s:%d/api", scheme, msf.host, msf.port)
-	r, err := http.Post(dest, "binary/message-pack", msf.buf)
+
+	tr := &http.Transport{
+		DisableKeepAlives: true,
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		},
+	}
+	client := &http.Client{Transport: tr}
+	request, err := http.NewRequest("POST", dest, msf.buf)
+	if err != nil {
+		return err
+	}
+
+	request.Header.Set("Content-Type", "binary/message-pack")
+	request.Header.Set("Accept", "binary/message-pack")
+	request.Header.Set("Accept-Charset", "UTF-8")
+
+	r, err := client.Do(request)
 	if err != nil {
 		return err
 	}
