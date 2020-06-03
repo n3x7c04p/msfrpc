@@ -79,7 +79,11 @@ func (msf *Msfrpc) send(req interface{}, res interface{}) error {
 		msf.buf.Reset()
 		return nil
 	case 500:
-		return errors.New(fmt.Sprintf("The request resulted in an error: \n%s", msf.buf.String()))
+		var errRes models.ErrorRes
+		if err := msgpack.NewDecoder(r.Body).Decode(&errRes); err != nil {
+			return err
+		}
+		return errors.New(fmt.Sprintf("%t %s %s\n", errRes.Error, errRes.ErrorClass, errRes.ErrorMessage))
 	case 401:
 		return errors.New(fmt.Sprintf("The authentication credentials supplied were not valid"))
 	case 403:

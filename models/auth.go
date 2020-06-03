@@ -8,11 +8,8 @@ type AuthLoginReq struct {
 }
 
 type AuthLoginRes struct {
-	Result       string `msgpack:"result"`
-	Token        string `msgpack:"token"`
-	Error        bool   `msgpack:"error,omitempty"`
-	ErrorClass   string `msgpack:"error_class,omitempty"`
-	ErrorMessage string `msgpack:"error_message,omitempty"`
+	Result string `msgpack:"result"`
+	Token  string `msgpack:"token"`
 }
 
 type AuthLogoutReq struct {
