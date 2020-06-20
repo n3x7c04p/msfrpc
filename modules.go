@@ -90,8 +90,8 @@ func (msf *Msfrpc) ModuleCompatibleSessions(ModuleName string) ([]int, error) {
 	return res.Sessions, nil
 }
 
-func (msf *Msfrpc) ModuleExecute(ModuleType string, ModuleName string) (models.ModuleExecuteRes, error) {
-	req := &models.ModuleExecuteReq{Method: models.ModuleExecute, Token: msf.token, ModType: ModuleType, ModName: ModuleName}
+func (msf *Msfrpc) ModuleExecute(ModuleType string, ModuleName string, options map[string]interface{}) (models.ModuleExecuteRes, error) {
+	req := &models.ModuleExecuteReq{Method: models.ModuleExecute, Token: msf.token, ModType: ModuleType, ModName: ModuleName, Options: options}
 	var res models.ModuleExecuteRes
 	if err := msf.send(req, &res); err != nil {
 		return models.ModuleExecuteRes{}, err
